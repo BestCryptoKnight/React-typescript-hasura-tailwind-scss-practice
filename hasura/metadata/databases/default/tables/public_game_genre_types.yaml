@@ -1,0 +1,4 @@
+table:
+  name: game_genre_types
+  schema: public
+is_enum: true

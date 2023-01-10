@@ -1,0 +1,5 @@
+- "!include public_game_genre_types.yaml"
+- "!include public_game_genres.yaml"
+- "!include public_game_platform_types.yaml"
+- "!include public_game_platforms.yaml"
+- "!include public_games.yaml"

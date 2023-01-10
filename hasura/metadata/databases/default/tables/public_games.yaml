@@ -1,0 +1,22 @@
+table:
+  name: games
+  schema: public
+array_relationships:
+  - name: genres
+    using:
+      manual_configuration:
+        column_mapping:
+          id: game_id
+        insertion_order: null
+        remote_table:
+          name: game_genres
+          schema: public
+  - name: platforms
+    using:
+      manual_configuration:
+        column_mapping:
+          id: game_id
+        insertion_order: null
+        remote_table:
+          name: game_platforms
+          schema: public
