@@ -10,7 +10,7 @@ type SearchOption = {
 
 const headers = {
   "Content-Type": "application/json",
-  "x-hasura-admin-secret": "abcd1234",
+  "x-hasura-admin-secret": process.env.REACT_APP_HASURA_KEY,
 };
 
 export const getGenreNames = async () => {
@@ -24,7 +24,7 @@ export const getGenreNames = async () => {
   };
 
   const { data } = await axios.post(
-    "http://localhost:8080/v1/graphql",
+    process.env.REACT_APP_HASURA_URL || "http://localhost:8080/v1/graphql",
     gQuery,
     {
       headers: headers,
@@ -40,7 +40,7 @@ const getGames = async ({
   limit,
   isAlive,
 }: SearchOption) => {
-  const nameSearchToken = searchTerm ? `name: {_like: "%${searchTerm}%"}` : "";
+  const nameSearchToken = searchTerm ? `name: {_ilike: "%${searchTerm}%"}` : "";
   const genreSearchToken = genre ? `genres: {genre_name: {_eq: ${genre}}}` : "";
   const isAliveToken = `is_live: {_eq: ${isAlive}}`;
   const gQuery = {

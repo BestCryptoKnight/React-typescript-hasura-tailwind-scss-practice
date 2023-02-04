@@ -1,3 +1,4 @@
+import React from "react";
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
 import PaginationButton from "./PaginationButton";
 
@@ -20,7 +21,7 @@ const Pagination = ({
     goToPage(next);
   };
   const nextPage = () => {
-    const next = (current !== pages - 1) ? current + 1 : current;
+    const next = current !== pages - 1 ? current + 1 : current;
     goToPage(next);
   };
   const goToPage = (page: number) => {
@@ -28,7 +29,11 @@ const Pagination = ({
   };
   return (
     <div className="flex mt-5 float-right">
-      <PaginationButton isNavigationBtn={true} onClick={prevPage}>
+      <PaginationButton
+        isNavigationBtn={true}
+        onClick={prevPage}
+        disable={current < 1}
+      >
         <AiOutlineLeft />
       </PaginationButton>
       {[...Array(pages).keys()].map((page) => (
@@ -40,7 +45,11 @@ const Pagination = ({
           {page + 1}
         </PaginationButton>
       ))}
-      <PaginationButton isNavigationBtn={true} onClick={nextPage}>
+      <PaginationButton
+        isNavigationBtn={true}
+        onClick={nextPage}
+        disable={current > pages - 2}
+      >
         <AiOutlineRight />
       </PaginationButton>
     </div>
